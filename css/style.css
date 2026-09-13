@@ -1,0 +1,429 @@
+/* ==========================================================================
+   CSS Variables & Theme (T'Petie Design System)
+   ========================================================================== */
+:root {
+  /* Colors */
+  --color-primary: #FFB7B2; /* Pastel Red/Pink */
+  --color-secondary: #E2F0CB; /* Pastel Green */
+  --color-accent: #B5EAD7; /* Pastel Mint */
+  --color-text-main: #333333;
+  --color-text-light: #666666;
+  --color-bg: #FAFAFA;
+  --color-white: #FFFFFF;
+  --color-border: #EEEEEE;
+  
+  /* Collection Colors */
+  --col-hoc-sinh-kem: #FFD1DC;
+  --col-trung-thu-kem-com: #C1E1C1;
+  --col-ha-mat-t6: #AEC6CF;
+  --col-he-t3: #FDFD96;
+
+  /* Typography */
+  --font-family: 'Quicksand', 'Nunito', sans-serif;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+
+  /* Shadows & Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease;
+  
+  /* Layout */
+  --container-width: 1200px;
+}
+
+/* ==========================================================================
+   Reset & Global Styles
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-text-main);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+  opacity: 0; /* For page transition fade-in */
+  transition: opacity var(--transition-normal);
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* Page Transition Wrapper */
+.page-transition {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+.site-header {
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.5px;
+}
+
+.main-nav > ul {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.main-nav > ul > li {
+  position: relative;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-text-main);
+  padding: var(--space-sm) 0;
+  position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-primary);
+}
+
+/* Active underline indicator */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width var(--transition-fast);
+}
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text-main);
+}
+
+/* ==========================================================================
+   Mega Menu (3 Tầng)
+   ========================================================================== */
+.mega-menu-wrapper {
+  position: static; /* Let dropdown span full width */
+}
+
+.mega-menu {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-xl) 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all var(--transition-normal);
+  border-top: 1px solid var(--color-border);
+}
+
+.mega-menu-wrapper:hover .mega-menu,
+.mega-menu-wrapper:focus-within .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mega-menu-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.mega-col {
+  /* Column styles */
+}
+
+.mega-col-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-border);
+  display: inline-block;
+}
+
+/* Decorator colors for columns */
+.col-1 .mega-col-title { border-color: var(--col-hoc-sinh-kem); }
+.col-2 .mega-col-title { border-color: var(--col-trung-thu-kem-com); }
+.col-3 .mega-col-title { border-color: var(--col-ha-mat-t6); }
+.col-4 .mega-col-title { border-color: var(--col-he-t3); }
+
+.mega-col-list li {
+  margin-bottom: var(--space-sm);
+}
+
+.mega-col-list a {
+  font-size: 14px;
+  color: var(--color-text-light);
+  display: block;
+  padding: 4px 0;
+}
+
+.mega-col-list a:hover {
+  color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Mobile Menu (Drawer)
+   ========================================================================== */
+@media (max-width: 991px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background-color: var(--color-white);
+    box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1001;
+    overflow-y: auto;
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .main-nav.open {
+    right: 0;
+  }
+  
+  .main-nav > ul {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .main-nav > ul > li {
+    height: auto;
+    width: 100%;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: var(--space-md) 0;
+  }
+  
+  .mega-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    display: none; /* Hide by default, handled by JS accordion */
+  }
+  
+  .mega-menu.accordion-open {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .mega-menu-inner {
+    grid-template-columns: 1fr;
+    padding: 0 0 var(--space-md) var(--space-md);
+  }
+  
+  .mega-col-title {
+    margin-top: var(--space-md);
+  }
+  
+  /* Overlay */
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* ==========================================================================
+   Product Cards & Grid
+   ========================================================================== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.product-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+/* Highlight Effect for anchor links */
+.product-card.highlight-pulse {
+  animation: pulse-border 2s ease-out;
+}
+
+@keyframes pulse-border {
+  0% { border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(255, 183, 178, 0.3); }
+  50% { border-color: var(--color-primary); box-shadow: 0 0 0 8px rgba(255, 183, 178, 0); }
+  100% { border-color: transparent; box-shadow: 0 0 0 0 rgba(255, 183, 178, 0); }
+}
+
+.product-image-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-bg);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-light);
+  font-size: 14px;
+}
+
+.product-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  flex-grow: 1;
+}
+
+.product-price {
+  font-size: 14px;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Collection Header */
+.collection-header {
+  padding: var(--space-xl) 0;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  border-radius: var(--radius-md);
+}
+
+.collection-header h1 {
+  font-size: 32px;
+  color: var(--color-text-main);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background-color: var(--color-white);
+  padding: var(--space-xl) 0;
+  margin-top: var(--space-xxl);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.site-footer p {
+  color: var(--color-text-light);
+  font-size: 14px;
+}

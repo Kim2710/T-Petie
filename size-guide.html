@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hướng Dẫn Chọn Size | T'Petie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">T'Petie</a>
+      <button class="menu-toggle" aria-label="Mở menu">☰</button>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="nav-link">Trang Chủ</a></li>
+          <li><a href="about.html" class="nav-link">Về Chúng Tôi</a></li>
+          <li class="mega-menu-wrapper">
+            <a href="collections.html" class="nav-link">Bộ Sưu Tập</a>
+            <div class="mega-menu">
+              <div class="mega-menu-inner"></div>
+            </div>
+          </li>
+          <li><a href="offers.html" class="nav-link">Ưu Đãi</a></li>
+          <li><a href="size-guide.html" class="nav-link active">Hướng Dẫn Chọn Size</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-transition container" style="padding: var(--space-xxl) 0;">
+    <h1 style="text-align: center; margin-bottom: var(--space-lg);">Hướng Dẫn Chọn Size</h1>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">Vui lòng tham khảo bảng size bên dưới để chọn kích cỡ phù hợp nhất cho bé.</p>
+    
+    <div style="margin: var(--space-xl) auto; max-width: 600px; background: white; padding: var(--space-xl); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+      <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead style="border-bottom: 2px solid var(--color-primary);">
+          <tr>
+            <th style="padding: 12px;">Size</th>
+            <th style="padding: 12px;">Độ Tuổi</th>
+            <th style="padding: 12px;">Chiều Cao (cm)</th>
+            <th style="padding: 12px;">Cân Nặng (kg)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px;">1</td>
+            <td style="padding: 12px;">1 - 2T</td>
+            <td style="padding: 12px;">80 - 90</td>
+            <td style="padding: 12px;">10 - 12</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px;">2</td>
+            <td style="padding: 12px;">2 - 3T</td>
+            <td style="padding: 12px;">90 - 100</td>
+            <td style="padding: 12px;">12 - 15</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px;">3</td>
+            <td style="padding: 12px;">3 - 4T</td>
+            <td style="padding: 12px;">100 - 110</td>
+            <td style="padding: 12px;">15 - 18</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 T'Petie. All rights reserved.</p></div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Analytics.viewSizeGuide();
+    });
+  </script>
+</body>
+</html>
